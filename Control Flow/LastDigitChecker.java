@@ -16,12 +16,21 @@ public class LastDigitChecker {
         }
         return false;
     }
+    public static boolean isValic(int num4){
+        while((num4 >= 10)&&(num4 <= 1000)){
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         boolean a = hasSameLastDigit(41, 22, 71);
         boolean b = hasSameLastDigit(23, 32, 42);
         boolean c = hasSameLastDigit(9, 99, 999);
+        boolean d = isValic(69);
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
+        System.out.println(d);
     }
 }
