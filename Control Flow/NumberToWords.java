@@ -13,7 +13,7 @@ public class NumberToWords {
             System.out.println("Invalid Number");
         }
         if (number == 0) {
-            System.out.print("Zero");
+            System.out.print("Zer");
             return;
         }
         int reversedNumber = reverse(number);
