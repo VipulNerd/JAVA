@@ -108,7 +108,7 @@ class Wall{
     }
 }
 
-class MainBED{
+class Main{
     public static void main(String[] args) {
         Wall wall1 = new Wall("West");
         Wall wall2 = new Wall("East");
