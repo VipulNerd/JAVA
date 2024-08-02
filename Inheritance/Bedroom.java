@@ -2,15 +2,15 @@
 
 public class Bedroom {
     private String name;
-    private Wall wall1;
-    private Wall wall2;
-    private Wall wall3;
-    private Wall wall4 ;
+    private Wa_ll wall1;
+    private Wa_ll wall2;
+    private Wa_ll wall3;
+    private Wa_ll wall4 ;
     private Ceiling ceiling;
     public Bed bed;
     public Lamp lamp;
     
-    public Bedroom (String name, Wall wall1, Wall wall2, Wall wall3, Wall wall4, Ceiling ceiling, Bed bed, Lamp lamp ){
+    public Bedroom (String name, Wa_ll wall1, Wa_ll wall2, Wa_ll wall3, Wa_ll wall4, Ceiling ceiling, Bed bed, Lamp lamp ){
         this.name = name;
         this.wall1 = wall1;
         this.wall2 = wall2;
@@ -98,9 +98,9 @@ class Ceiling{
         return paintedColor;
     }
 }
-class Wall{
+class Wa_ll{
     private String direction;
-    public Wall (String direction){
+    public Wa_ll (String direction){
         this.direction = direction;
     }
     public String getDirection(){
@@ -110,10 +110,10 @@ class Wall{
 
 class Main{
     public static void main(String[] args) {
-        Wall wall1 = new Wall("West");
-        Wall wall2 = new Wall("East");
-        Wall wall3 = new Wall("South");
-        Wall wall4 = new Wall("North");
+        Wa_ll wall1 = new Wa_ll("West");
+        Wa_ll wall2 = new Wa_ll("East");
+        Wa_ll wall3 = new Wa_ll("South");
+        Wa_ll wall4 = new Wa_ll("North");
         
         Ceiling ceiling = new Ceiling(12, 55);
         
