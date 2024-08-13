@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MinimumElement {
+public class minimumElement {
     public static int readInteger(){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the number of elements to enter");
@@ -35,8 +35,8 @@ public class MinimumElement {
     public static void main(String[] args) {
         int size = readInteger();
         int[] firstArray = readElements(size);
-        int minimumElement = findMin(firstArray);
-        System.out.println("Minimum Element in given arry:" + minimumElement);
+        int minElement = findMin(firstArray);
+        System.out.println("Minimum Element in given arry:" + minElement);
     }
     
 }
