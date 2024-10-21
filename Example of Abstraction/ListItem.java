@@ -128,14 +128,45 @@ class MyLinkedList implements NodeList {
     }
 
     @Override
-    public boolean removItem() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean removeItem(ListItem item) {
+        if (item != null) {
+            ListItem currentItem = this.root;
+            while (currentItem != null) {
+                int comparison = currentItem.compareTo(item);
+                if (comparison == 0) {
+                    if (currentItem == this.root) {
+                        this.root = currentItem.next();
+                    } else {
+                        currentItem.previous().setNext(currentItem.next());
+                        if (currentItem.next() != null) {
+                            currentItem.next().setPrevious(currentItem.previous());
+                        }
+                    }
+                    return true;
+
+                } else if (comparison < 0) {
+                    currentItem = currentItem.next();
+                } else {
+                    return false;
+                }
+            }
+
+        }
+        return false;
     }
 
     @Override
-    public ListItem traverse() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'traverse'");
+    public void traverse(ListItem root) {
+        if (this.root == null) {
+            System.out.println("This List is empty");
+        } else {
+            ListItem currentItem = this.root;
+            if (currentItem != null) {
+                System.out.println(currentItem.getValue());
+                currentItem = currentItem.next();
+
+            }
+        }
     }
 
 }
@@ -146,8 +177,116 @@ interface NodeList {
 
     boolean addItem(ListItem newitem);
 
-    boolean removItem();
+    boolean removeItem(ListItem item);
 
-    ListItem traverse();
+    void traverse(ListItem root);
+
+}
+
+class SearchTree implements NodeList {
+
+    private ListItem root = null;
+
+    // Constructor
+    public SearchTree(ListItem root) {
+        this.root = root;
+    }
+
+    // Getter for root
+    public ListItem getRoot() {
+        return this.root;
+    }
+
+    // Add an item to the binary search tree
+    public boolean addItem(ListItem newItem) {
+        if (this.root == null) {
+            // The tree is empty, so the root becomes the newItem
+            this.root = newItem;
+            return true;
+        }
+
+        ListItem currentItem = this.root;
+        while (currentItem != null) {
+            int comparison = currentItem.compareTo(newItem);
+            if (comparison < 0) {
+                // newItem is greater, move right
+                if (currentItem.next() != null) {
+                    currentItem = currentItem.next();
+                } else {
+                    currentItem.setNext(newItem);
+                    return true;
+                }
+            } else if (comparison > 0) {
+                // newItem is smaller, move left
+                if (currentItem.previous() != null) {
+                    currentItem = currentItem.previous();
+                } else {
+                    currentItem.setPrevious(newItem);
+                    return true;
+                }
+            } else {
+                // Equal, don't add
+                return false;
+            }
+        }
+        return false;
+    }
+
+    // Remove an item from the tree
+    public boolean removeItem(ListItem item) {
+        if (item != null) {
+            ListItem currentItem = this.root;
+            ListItem parentItem = currentItem;
+
+            while (currentItem != null) {
+                int comparison = currentItem.compareTo(item);
+                if (comparison == 0) {
+                    // Found the item to remove
+                    performRemoval(currentItem, parentItem);
+                    return true;
+                } else if (comparison < 0) {
+                    parentItem = currentItem;
+                    currentItem = currentItem.next();
+                } else {
+                    parentItem = currentItem;
+                    currentItem = currentItem.previous();
+                }
+            }
+        }
+        return false;
+    }
+
+    // Private helper method to perform removal
+    private void performRemoval(ListItem item, ListItem parent) {
+        // If item has no children
+        if (item.next() == null && item.previous() == null) {
+            if (parent.next() == item) {
+                parent.setNext(null);
+            } else {
+                parent.setPrevious(null);
+            }
+        } else if (item.previous() == null) {
+            if (parent.next() == item) {
+                parent.setNext(item.next());
+            } else {
+                parent.setPrevious(item.next());
+            }
+        } else if (item.next() == null) {
+            if (parent.next() == item) {
+                parent.setNext(item.previous());
+            } else {
+                parent.setPrevious(item.previous());
+            }
+        }
+    }
+
+    // Traverse the binary tree (Inorder)
+    public void traverse(ListItem root) {
+        if (root != null) {
+            traverse(root.previous());
+            System.out.println(root.getValue());
+            traverse(root.next());
+        }
+    }
 
 }
