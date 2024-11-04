@@ -1,5 +1,5 @@
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Palindrome {
 
@@ -11,13 +11,13 @@ public class Palindrome {
             System.out.println("Ivalid String");
         }
 
-        String reverse = "";
+        StringBuilder reverse = new StringBuilder();
 
         for (int i = A.length() - 1; i >= 0; i--) {
-            reverse = reverse + A.charAt(i);
+            reverse.append(A.charAt(i));
         }
 
-        if (reverse.equals(A)) {
+        if (reverse.toString().equals(A)) {
             System.out.println("Yes");
         } else {
             System.out.println("No");
