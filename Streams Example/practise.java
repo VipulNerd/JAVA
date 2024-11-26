@@ -2,7 +2,7 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class Ex1 {
+public class practise {
 
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(5, 2, 9, 1, 6);
